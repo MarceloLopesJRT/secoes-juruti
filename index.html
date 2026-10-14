@@ -1,3 +1,21 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Digite o número da sua seção e descubra onde votar. 58 locais, 139 seções, com rota direto no mapa.">
+<meta name="theme-color" content="#0D5B57" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1514" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Onde você vota">
+<meta property="og:title" content="Onde você vota — Juruti 2026">
+<meta property="og:description" content="Digite o número da sua seção e descubra onde votar. 58 locais, 139 seções, com rota direto no mapa.">
+<meta property="og:url" content="https://SEU-ENDERECO-AQUI/">
+<meta property="og:image" content="https://SEU-ENDERECO-AQUI/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Onde você vota — Juruti 2026">
+<meta name="twitter:description" content="Digite o número da sua seção e descubra onde votar. 58 locais, 139 seções, com rota direto no mapa.">
+<meta name="twitter:image" content="https://SEU-ENDERECO-AQUI/preview.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>">
 <title>Onde Você Vota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -7,18 +25,21 @@
         --muted:#5C6E6B;--line:#CFDAD8;--accent:#A76705;--teal:#0D5B57;--tealink:#FFF;
         --alerta:#9C3A2B;--alertabg:#FBE9E5;
         --urb:#4A32A8;--urbbg:#E8E4F5;--rur:#2F6B1F;--rurbg:#E2F0DC;
-        --rib:#8A6208;--ribbg:#FBEFD2;--ind:#1D5F9E;--indbg:#DDECFA;}
+        --rib:#8A6208;--ribbg:#FBEFD2;--ind:#1D5F9E;--indbg:#DDECFA;
+        --pt:#C0272D;--pl:#1B5FA8;}
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
         --bg:#0B1514;--surface:#13211F;--wash:#1B2C29;--ink:#E7EEEC;--soft:#C2D0CD;
         --muted:#8FA3A0;--line:#263A37;--accent:#E5A238;--teal:#3FA79D;--tealink:#04211F;
         --alerta:#E08272;--alertabg:#2E1A17;
         --urb:#B9A8F0;--urbbg:#241C3D;--rur:#8FD37A;--rurbg:#162D12;
-        --rib:#E8C168;--ribbg:#302512;--ind:#8AC2F0;--indbg:#122636;}}
+        --rib:#E8C168;--ribbg:#302512;--ind:#8AC2F0;--indbg:#122636;
+        --pt:#FF7B72;--pl:#6FB1F5;}}
   :root[data-theme="dark"]{--bg:#0B1514;--surface:#13211F;--wash:#1B2C29;--ink:#E7EEEC;
         --soft:#C2D0CD;--muted:#8FA3A0;--line:#263A37;--accent:#E5A238;--teal:#3FA79D;
         --tealink:#04211F;--alerta:#E08272;--alertabg:#2E1A17;
         --urb:#B9A8F0;--urbbg:#241C3D;--rur:#8FD37A;--rurbg:#162D12;
-        --rib:#E8C168;--ribbg:#302512;--ind:#8AC2F0;--indbg:#122636;}
+        --rib:#E8C168;--ribbg:#302512;--ind:#8AC2F0;--indbg:#122636;
+        --pt:#FF7B72;--pl:#6FB1F5;}
 
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);
@@ -120,6 +141,60 @@
     a.ir{text-align:center;padding:15px 18px;font-size:16px}
     .resumo{min-width:0}
   }
+
+  /* resultados por local */
+  .painel-res{margin-top:14px;background:var(--surface);border:1px solid var(--line);
+      border-radius:10px;padding:16px 17px}
+  .painel-res h2{font-size:17px;font-weight:700;margin:0 0 3px}
+  .painel-res .data{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);
+      text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+  .painel-grid{display:flex;flex-wrap:wrap;gap:18px 28px;margin-bottom:10px}
+  .painel-stat b{display:block;font-family:"IBM Plex Mono",monospace;font-size:20px;color:var(--ink)}
+  .painel-stat span{font-size:12.5px;color:var(--muted)}
+  .painel-lider{display:flex;flex-direction:column;gap:7px}
+  .pl-item{display:flex;align-items:center;gap:9px}
+  .pl-nome{width:132px;flex:0 0 auto;font-size:14px;color:var(--soft);font-weight:600}
+  .pl-barra-fundo{flex:1;height:9px;background:var(--wash);border-radius:5px;overflow:hidden}
+  .pl-barra{display:block;height:100%;border-radius:5px}
+  .pl-pct{width:52px;flex:0 0 auto;text-align:right;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted)}
+  .c13{background:var(--pt)}
+  .c22{background:var(--pl)}
+  .coutro{background:var(--muted)}
+
+  .controles{display:flex;gap:10px;flex-wrap:wrap;padding:10px 0 2px}
+  .controles label{display:flex;flex-direction:column;gap:4px;font-family:"IBM Plex Mono",monospace;
+      font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  .controles select{font-family:"Archivo",sans-serif;font-size:14.5px;color:var(--ink);
+      background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+
+  .votos{margin:2px 0 12px;padding:11px 12px;background:var(--wash);border-radius:8px}
+  .votos-cab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .votos-l{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;
+      text-transform:uppercase;color:var(--muted)}
+  .abst{font-size:12.5px;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+  .abst b{color:var(--alerta)}
+  .vrow{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .vrow:last-child{margin-bottom:0}
+  .vrow .vnome{width:118px;flex:0 0 auto;font-size:13.5px;color:var(--soft)}
+  .vrow.lider .vnome{font-weight:700;color:var(--ink)}
+  .vfundo{flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+  .vbarra{display:block;height:100%;border-radius:4px}
+  .vinfo{width:92px;flex:0 0 auto;text-align:right;font-family:"IBM Plex Mono",monospace;
+      font-size:12px;color:var(--muted)}
+  .vrow.destaque .vnome,.vrow.destaque .vinfo{color:var(--accent);font-weight:700}
+  .vrow.destaque.cor-13 .vnome,.vrow.destaque.cor-13 .vinfo{color:var(--pt)}
+  .vrow.destaque.cor-22 .vnome,.vrow.destaque.cor-22 .vinfo{color:var(--pl)}
+  .sem-dados{font-size:13.5px;color:var(--muted);font-style:italic}
+  .destaque-box{margin:-2px 0 9px;padding:7px 10px;background:var(--surface);
+      border:1px solid var(--accent);border-radius:6px;font-size:13.5px;
+      font-weight:700;color:var(--accent)}
+  .destaque-box.cor-13{border-color:var(--pt);color:var(--pt)}
+  .destaque-box.cor-22{border-color:var(--pl);color:var(--pl)}
+  .rank-badge{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;
+      color:var(--tealink);background:var(--teal);border-radius:5px;padding:2px 7px;
+      margin-right:2px}
+  .card.tem-lider-13{border-left:3px solid var(--pt)}
+  .card.tem-lider-22{border-left:3px solid var(--pl)}
 </style>
 
 <div class="wrap">
@@ -140,6 +215,37 @@
     traçada de onde você está.</div>
   </header>
 
+  <div class="painel-res">
+    <h2>Resultados — Presidente (1º turno)</h2>
+    <div class="data">Apurado em 05/10/2026 · fonte: TSE, Boletins de Urna</div>
+    <div class="painel-grid">
+      <div class="painel-stat"><b>39.112</b><span>eleitores aptos</span></div>
+      <div class="painel-stat"><b>31.784</b><span>compareceram</span></div>
+      <div class="painel-stat"><b>7.328 (18,7%)</b><span>abstenções</span></div>
+    </div>
+    <div class="painel-lider">
+      <div class="pl-item"><span class="pl-nome">Lula</span>
+        <span class="pl-barra-fundo"><span class="pl-barra c13" style="width:57.7%"></span></span>
+        <span class="pl-pct">57,7%</span></div>
+      <div class="pl-item"><span class="pl-nome">Flávio Bolsonaro</span>
+        <span class="pl-barra-fundo"><span class="pl-barra c22" style="width:38.6%"></span></span>
+        <span class="pl-pct">38,6%</span></div>
+      <div class="pl-item"><span class="pl-nome">Augusto Cury</span>
+        <span class="pl-barra-fundo"><span class="pl-barra coutro" style="width:2.2%"></span></span>
+        <span class="pl-pct">2,2%</span></div>
+      <div class="pl-item"><span class="pl-nome">Renan Santos</span>
+        <span class="pl-barra-fundo"><span class="pl-barra coutro" style="width:1.0%"></span></span>
+        <span class="pl-pct">1,0%</span></div>
+      <div class="pl-item"><span class="pl-nome">Ronaldo Caiado</span>
+        <span class="pl-barra-fundo"><span class="pl-barra coutro" style="width:0.4%"></span></span>
+        <span class="pl-pct">0,4%</span></div>
+      <div class="pl-item"><span class="pl-nome">Clariana Barão</span>
+        <span class="pl-barra-fundo"><span class="pl-barra coutro" style="width:0.0%"></span></span>
+        <span class="pl-pct">0,0%</span></div>
+    </div>
+  </div>
+
+
   <div class="barra">
     <div class="campo">
       <input id="q" type="search" inputmode="search" autocomplete="off"
@@ -150,6 +256,35 @@
     <div class="chips" role="group" aria-label="Filtrar por distrito">
       <button class="chip" data-d="" aria-pressed="true">Todos</button><button class="chip" data-d="SEDE">Sede</button><button class="chip" data-d="TABATINGA">Tabatinga</button><button class="chip" data-d="CASTANHAL">Castanhal</button><button class="chip" data-d="MUIRAPINIMA">Juruti Velho</button><button class="chip" data-d="MAMURU">Mamuru</button>
     </div>
+
+    <div class="controles">
+      <label>Candidato em destaque
+        <select id="cand">
+          <option value="">— nenhum —</option>
+        <option value="13">Lula</option>
+        <option value="22">Flávio Bolsonaro</option>
+        <option value="70">Augusto Cury</option>
+        <option value="14">Renan Santos</option>
+        <option value="55">Ronaldo Caiado</option>
+        <option value="27">Clariana Barão</option>
+        <option value="80">Samara</option>
+        <option value="30">Zema</option>
+        <option value="21">Edmilson Costa</option>
+        <option value="35">Wilson Grassi</option>
+        <option value="16">Hertz Dias</option>
+        </select>
+      </label>
+      <label>Ordenar por
+        <select id="ordem">
+          <option value="">Padrão (geográfico)</option>
+          <option value="abst-desc">Maior abstenção</option>
+          <option value="abst-asc">Menor abstenção</option>
+          <option value="cand-desc">Mais votos do candidato em destaque</option>
+          <option value="cand-asc">Menos votos do candidato em destaque</option>
+          <option value="aptos-desc">Mais eleitores aptos</option>
+        </select>
+      </label>
+    </div>
     <div class="conta" id="conta"></div>
   </div>
 
@@ -157,7 +292,7 @@
   <section class="grupo" data-d="SEDE">
     <div class="ghead"><h2>Sede</h2><span>28 locais · 85 seções · 25.546 eleitores</span></div>
     
-    <article class="card" data-d="SEDE" data-b="1520 EMEF ZELINDA GUIMARAES DE SOUZA CIDADE · RUA ARNALDO PINHEIRO DE SOUZA SEDE SEDE CIDADE URBANO" data-s="|96|97|98|99|100|101|111|114|118|131|" data-cod="1520">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1520 EMEF ZELINDA GUIMARAES DE SOUZA CIDADE · RUA ARNALDO PINHEIRO DE SOUZA SEDE SEDE CIDADE URBANO" data-s="|96|97|98|99|100|101|111|114|118|131|" data-cod="1520" data-lider="13" data-abst="20.2" data-aptos="3950" data-v13="1505" data-v22="1416" data-v70="74" data-v14="59" data-v55="13" data-v27="1" data-v80="3" data-v30="0" data-v21="1" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1520</span>
         <h3>EMEF ZELINDA GUIMARÃES DE SOUZA</h3>
@@ -165,6 +300,7 @@
       </div>
       <p class="onde">CIDADE · RUA ARNALDO PINHEIRO DE SOUZA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="96"><b>96</b><i>397</i></span><span class="sec" data-n="97"><b>97</b><i>394</i></span><span class="sec" data-n="98"><b>98</b><i>396</i></span><span class="sec" data-n="99"><b>99</b><i>398</i></span><span class="sec" data-n="100"><b>100</b><i>393</i></span><span class="sec" data-n="101"><b>101</b><i>395</i></span><span class="sec" data-n="111"><b>111</b><i>396</i></span><span class="sec" data-n="114"><b>114</b><i>395</i></span><span class="sec" data-n="118"><b>118</b><i>395</i></span><span class="sec" data-n="131"><b>131</b><i>397</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>20,2%</b> (799 de 3950)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:49.0%"></span></span><span class="vinfo">1505 · 49,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:46.1%"></span></span><span class="vinfo">1416 · 46,1%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.4%"></span></span><span class="vinfo">74 · 2,4%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.9%"></span></span><span class="vinfo">59 · 1,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">13 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>10</b> seç. · <b>3.956</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.157057,-56.087982" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -172,7 +308,7 @@
       <button class="coord" data-c="-2.157057, -56.087982">-2.157057, -56.087982 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1058 EEEM EMANUEL SALGADO VIEIRA CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N SEDE SEDE CIDADE URBANO" data-s="|9|10|11|12|13|14|15|16|17|18|115|" data-cod="1058">
+    <article class="card tem-lider-22" data-d="SEDE" data-b="1058 EEEM EMANUEL SALGADO VIEIRA CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N SEDE SEDE CIDADE URBANO" data-s="|9|10|11|12|13|14|15|16|17|18|115|" data-cod="1058" data-lider="22" data-abst="20.6" data-aptos="3361" data-v13="1182" data-v22="1257" data-v70="92" data-v14="39" data-v55="12" data-v27="3" data-v80="1" data-v30="0" data-v21="0" data-v35="1" data-v16="1">
       <div class="top">
         <span class="cod">1058</span>
         <h3>EEEM EMANUEL SALGADO VIEIRA</h3>
@@ -180,6 +316,7 @@
       </div>
       <p class="onde">CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="9"><b>9</b><i>305</i></span><span class="sec" data-n="10"><b>10</b><i>302</i></span><span class="sec" data-n="11"><b>11</b><i>302</i></span><span class="sec" data-n="12"><b>12</b><i>304</i></span><span class="sec" data-n="13"><b>13</b><i>303</i></span><span class="sec" data-n="14"><b>14</b><i>303</i></span><span class="sec" data-n="15"><b>15</b><i>319</i></span><span class="sec" data-n="16"><b>16</b><i>300</i></span><span class="sec" data-n="17"><b>17</b><i>321</i></span><span class="sec" data-n="18"><b>18</b><i>311</i></span><span class="sec" data-n="115"><b>115</b><i>304</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>20,6%</b> (691 de 3361)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:48.6%"></span></span><span class="vinfo">1257 · 48,6%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:45.7%"></span></span><span class="vinfo">1182 · 45,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:3.6%"></span></span><span class="vinfo">92 · 3,6%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.5%"></span></span><span class="vinfo">39 · 1,5%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">12 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>11</b> seç. · <b>3.374</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.157507,-56.093197" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -187,7 +324,7 @@
       <button class="coord" data-c="-2.157507, -56.093197">-2.157507, -56.093197 &nbsp;·&nbsp; copiar</button>
       <p class="alerta">O cadastro do TRE marca este local como <b>BLOQUEADO</b>. Confirme o funcionamento antes do dia da eleição.</p>
     </article>
-    <article class="card" data-d="SEDE" data-b="1023 EDUCANDARIO NOSSA SENHORA DA SAUDE CIDADE · RUA MARECHAL RONDON, S/N SEDE SEDE CIDADE URBANO" data-s="|1|2|3|4|5|6|7|8|" data-cod="1023">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1023 EDUCANDARIO NOSSA SENHORA DA SAUDE CIDADE · RUA MARECHAL RONDON, S/N SEDE SEDE CIDADE URBANO" data-s="|1|2|3|4|5|6|7|8|" data-cod="1023" data-lider="13" data-abst="19.8" data-aptos="2737" data-v13="1130" data-v22="916" data-v70="60" data-v14="17" data-v55="8" data-v27="1" data-v80="0" data-v30="0" data-v21="1" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1023</span>
         <h3>EDUCANDÁRIO NOSSA SENHORA DA SAÚDE</h3>
@@ -195,6 +332,7 @@
       </div>
       <p class="onde">CIDADE · RUA MARECHAL RONDON, S/N</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="1"><b>1</b><i>345</i></span><span class="sec" data-n="2"><b>2</b><i>345</i></span><span class="sec" data-n="3"><b>3</b><i>343</i></span><span class="sec" data-n="4"><b>4</b><i>343</i></span><span class="sec" data-n="5"><b>5</b><i>339</i></span><span class="sec" data-n="6"><b>6</b><i>346</i></span><span class="sec" data-n="7"><b>7</b><i>343</i></span><span class="sec" data-n="8"><b>8</b><i>346</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,8%</b> (542 de 2737)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:53.0%"></span></span><span class="vinfo">1130 · 53,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:42.9%"></span></span><span class="vinfo">916 · 42,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.8%"></span></span><span class="vinfo">60 · 2,8%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.8%"></span></span><span class="vinfo">17 · 0,8%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">8 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>8</b> seç. · <b>2.750</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.153016,-56.091839" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -202,7 +340,7 @@
       <button class="coord" data-c="-2.153016, -56.091839">-2.153016, -56.091839 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1309 EMEF DEPUTADO AMERICO PEREIRA LIMA CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N SEDE SEDE CIDADE URBANO" data-s="|62|63|64|65|66|67|68|139|" data-cod="1309">
+    <article class="card tem-lider-22" data-d="SEDE" data-b="1309 EMEF DEPUTADO AMERICO PEREIRA LIMA CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N SEDE SEDE CIDADE URBANO" data-s="|62|63|64|65|66|67|68|139|" data-cod="1309" data-lider="22" data-abst="16.9" data-aptos="2635" data-v13="1000" data-v22="1060" data-v70="56" data-v14="19" data-v55="6" data-v27="1" data-v80="0" data-v30="1" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1309</span>
         <h3>EMEF DEPUTADO AMÉRICO PEREIRA LIMA</h3>
@@ -210,6 +348,7 @@
       </div>
       <p class="onde">CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="62"><b>62</b><i>358</i></span><span class="sec" data-n="63"><b>63</b><i>361</i></span><span class="sec" data-n="64"><b>64</b><i>359</i></span><span class="sec" data-n="65"><b>65</b><i>361</i></span><span class="sec" data-n="66"><b>66</b><i>355</i></span><span class="sec" data-n="67"><b>67</b><i>358</i></span><span class="sec" data-n="68"><b>68</b><i>358</i></span><span class="sec" data-n="139"><b>139</b><i>132</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>16,9%</b> (444 de 2635)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:49.5%"></span></span><span class="vinfo">1060 · 49,5%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:46.7%"></span></span><span class="vinfo">1000 · 46,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.6%"></span></span><span class="vinfo">56 · 2,6%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.9%"></span></span><span class="vinfo">19 · 0,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.3%"></span></span><span class="vinfo">6 · 0,3%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>8</b> seç. · <b>2.642</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.155584,-56.092085" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -217,7 +356,7 @@
       <button class="coord" data-c="-2.155584, -56.092085">-2.155584, -56.092085 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1449 RAIMUNDO DE SOUZA COELHO CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N SEDE SEDE CIDADE URBANO" data-s="|82|83|84|85|86|87|88|" data-cod="1449">
+    <article class="card tem-lider-22" data-d="SEDE" data-b="1449 RAIMUNDO DE SOUZA COELHO CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N SEDE SEDE CIDADE URBANO" data-s="|82|83|84|85|86|87|88|" data-cod="1449" data-lider="22" data-abst="21.2" data-aptos="2191" data-v13="649" data-v22="935" data-v70="54" data-v14="27" data-v55="11" data-v27="0" data-v80="0" data-v30="3" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1449</span>
         <h3>RAIMUNDO DE SOUZA COELHO</h3>
@@ -225,6 +364,7 @@
       </div>
       <p class="onde">CIDADE · RUA JOAQUIM GOMES DO AMARAL, S/N</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="82"><b>82</b><i>319</i></span><span class="sec" data-n="83"><b>83</b><i>320</i></span><span class="sec" data-n="84"><b>84</b><i>313</i></span><span class="sec" data-n="85"><b>85</b><i>313</i></span><span class="sec" data-n="86"><b>86</b><i>312</i></span><span class="sec" data-n="87"><b>87</b><i>309</i></span><span class="sec" data-n="88"><b>88</b><i>315</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>21,2%</b> (464 de 2191)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:55.7%"></span></span><span class="vinfo">935 · 55,7%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:38.7%"></span></span><span class="vinfo">649 · 38,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:3.2%"></span></span><span class="vinfo">54 · 3,2%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.6%"></span></span><span class="vinfo">27 · 1,6%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.7%"></span></span><span class="vinfo">11 · 0,7%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>7</b> seç. · <b>2.201</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.157143,-56.092904" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -232,7 +372,7 @@
       <button class="coord" data-c="-2.157143, -56.092904">-2.157143, -56.092904 &nbsp;·&nbsp; copiar</button>
       <p class="alerta">O cadastro do TRE marca este local como <b>BLOQUEADO</b>. Confirme o funcionamento antes do dia da eleição.</p>
     </article>
-    <article class="card" data-d="SEDE" data-b="1627 EMEF MARIA DA SILVA PEREIRA CIDADE · TRAV TUGO MARUOKA SEDE SEDE CIDADE URBANO" data-s="|19|20|21|22|112|135|" data-cod="1627">
+    <article class="card tem-lider-22" data-d="SEDE" data-b="1627 EMEF MARIA DA SILVA PEREIRA CIDADE · TRAV TUGO MARUOKA SEDE SEDE CIDADE URBANO" data-s="|19|20|21|22|112|135|" data-cod="1627" data-lider="22" data-abst="22.0" data-aptos="2088" data-v13="661" data-v22="847" data-v70="39" data-v14="32" data-v55="10" data-v27="1" data-v80="1" data-v30="0" data-v21="0" data-v35="1" data-v16="0">
       <div class="top">
         <span class="cod">1627</span>
         <h3>EMEF MARIA DA SILVA PEREIRA</h3>
@@ -240,6 +380,7 @@
       </div>
       <p class="onde">CIDADE · TRAV TUGO MARUOKA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="19"><b>19</b><i>350</i></span><span class="sec" data-n="20"><b>20</b><i>346</i></span><span class="sec" data-n="21"><b>21</b><i>348</i></span><span class="sec" data-n="22"><b>22</b><i>345</i></span><span class="sec" data-n="112"><b>112</b><i>351</i></span><span class="sec" data-n="135"><b>135</b><i>352</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>22,0%</b> (459 de 2088)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:53.2%"></span></span><span class="vinfo">847 · 53,2%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:41.5%"></span></span><span class="vinfo">661 · 41,5%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.4%"></span></span><span class="vinfo">39 · 2,4%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:2.0%"></span></span><span class="vinfo">32 · 2,0%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.6%"></span></span><span class="vinfo">10 · 0,6%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>6</b> seç. · <b>2.092</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.162499,-56.096676" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -247,7 +388,7 @@
       <button class="coord" data-c="-2.162499, -56.096676">-2.162499, -56.096676 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1619 EMEF MARIA LUCIA NASCIMENTO DA SILVA CIDADE · TRAV BENJAMIM AMADEU DE SOUZA SEDE SEDE CIDADE URBANO" data-s="|102|103|104|109|120|136|" data-cod="1619">
+    <article class="card tem-lider-22" data-d="SEDE" data-b="1619 EMEF MARIA LUCIA NASCIMENTO DA SILVA CIDADE · TRAV BENJAMIM AMADEU DE SOUZA SEDE SEDE CIDADE URBANO" data-s="|102|103|104|109|120|136|" data-cod="1619" data-lider="22" data-abst="19.3" data-aptos="2062" data-v13="686" data-v22="861" data-v70="49" data-v14="23" data-v55="7" data-v27="0" data-v80="0" data-v30="1" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1619</span>
         <h3>EMEF MARIA LUCIA NASCIMENTO DA SILVA</h3>
@@ -255,6 +396,7 @@
       </div>
       <p class="onde">CIDADE · TRAV BENJAMIM AMADEU DE SOUZA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="102"><b>102</b><i>345</i></span><span class="sec" data-n="103"><b>103</b><i>347</i></span><span class="sec" data-n="104"><b>104</b><i>344</i></span><span class="sec" data-n="109"><b>109</b><i>342</i></span><span class="sec" data-n="120"><b>120</b><i>343</i></span><span class="sec" data-n="136"><b>136</b><i>346</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,3%</b> (398 de 2062)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:52.9%"></span></span><span class="vinfo">861 · 52,9%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:42.2%"></span></span><span class="vinfo">686 · 42,2%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:3.0%"></span></span><span class="vinfo">49 · 3,0%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.4%"></span></span><span class="vinfo">23 · 1,4%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">7 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>6</b> seç. · <b>2.067</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.151073,-56.080902" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -262,7 +404,7 @@
       <button class="coord" data-c="-2.151073, -56.080902">-2.151073, -56.080902 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1686 EMEIF ELZA ALBUQUERQUE DE LIMA CIDADE · RUA VEREADOR JOSE DE SOUZA ANDRADE SEDE SEDE CIDADE URBANO" data-s="|122|134|" data-cod="1686">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1686 EMEIF ELZA ALBUQUERQUE DE LIMA CIDADE · RUA VEREADOR JOSE DE SOUZA ANDRADE SEDE SEDE CIDADE URBANO" data-s="|122|134|" data-cod="1686" data-lider="13" data-abst="21.6" data-aptos="742" data-v13="262" data-v22="262" data-v70="16" data-v14="21" data-v55="2" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1686</span>
         <h3>EMEIF ELZA ALBUQUERQUE DE LIMA</h3>
@@ -270,6 +412,7 @@
       </div>
       <p class="onde">CIDADE · RUA VEREADOR JOSÉ DE SOUZA ANDRADE</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="122"><b>122</b><i>372</i></span><span class="sec" data-n="134"><b>134</b><i>373</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>21,6%</b> (160 de 742)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:46.5%"></span></span><span class="vinfo">262 · 46,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:46.5%"></span></span><span class="vinfo">262 · 46,5%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:3.7%"></span></span><span class="vinfo">21 · 3,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.8%"></span></span><span class="vinfo">16 · 2,8%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">2 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>745</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.164110,-56.087289" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -277,7 +420,7 @@
       <button class="coord" data-c="-2.164110, -56.087289">-2.164110, -56.087289 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1163 EMEF VILMA GUIMARAES SANTA MARIA · COMUNIDADE SANTA MARIA   CURUMUCURI SEDE SEDE CURUMUCURI RURAL" data-s="|39|40|" data-cod="1163">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1163 EMEF VILMA GUIMARAES SANTA MARIA · COMUNIDADE SANTA MARIA   CURUMUCURI SEDE SEDE CURUMUCURI RURAL" data-s="|39|40|" data-cod="1163" data-lider="13" data-abst="15.2" data-aptos="618" data-v13="317" data-v22="180" data-v70="2" data-v14="1" data-v55="2" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1163</span>
         <h3>EMEF VILMA GUIMARÃES</h3>
@@ -285,6 +428,7 @@
       </div>
       <p class="onde">SANTA MARIA · COMUNIDADE SANTA MARIA - CURUMUCURI</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="39"><b>39</b><i>311</i></span><span class="sec" data-n="40"><b>40</b><i>309</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>15,2%</b> (94 de 618)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:63.1%"></span></span><span class="vinfo">317 · 63,1%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:35.9%"></span></span><span class="vinfo">180 · 35,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">2 · 0,4%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">2 · 0,4%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.2%"></span></span><span class="vinfo">1 · 0,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>620</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.153400,-56.011200" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -292,7 +436,7 @@
       <button class="coord" data-c="-2.153400, -56.011200">-2.153400, -56.011200 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1414 EMEF TEOFILO BATISTA DE LIRA SAO BENEDITO · COMUNIDADE SAO BENEDITO SEDE SEDE IGARAPE DO SALE RURAL" data-s="|79|113|" data-cod="1414">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1414 EMEF TEOFILO BATISTA DE LIRA SAO BENEDITO · COMUNIDADE SAO BENEDITO SEDE SEDE IGARAPE DO SALE RURAL" data-s="|79|113|" data-cod="1414" data-lider="13" data-abst="13.9" data-aptos="546" data-v13="390" data-v22="62" data-v70="6" data-v14="3" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1414</span>
         <h3>EMEF TEÓFILO BATISTA DE LIRA</h3>
@@ -300,6 +444,7 @@
       </div>
       <p class="onde">SÃO BENEDITO · COMUNIDADE SÃO BENEDITO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="79"><b>79</b><i>277</i></span><span class="sec" data-n="113"><b>113</b><i>273</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>13,9%</b> (76 de 546)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:84.6%"></span></span><span class="vinfo">390 · 84,6%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:13.4%"></span></span><span class="vinfo">62 · 13,4%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.3%"></span></span><span class="vinfo">6 · 1,3%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.7%"></span></span><span class="vinfo">3 · 0,7%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>550</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.207644,-55.949493" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -307,7 +452,7 @@
       <button class="coord" data-c="-2.207644, -55.949493">-2.207644, -55.949493 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1384 EMEF JOSE ROBERTO PIMENTEL CAFE TORRADO · COMUNIDADE CAFE TORRADO SEDE SEDE SAO PAULO RURAL" data-s="|76|121|" data-cod="1384">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1384 EMEF JOSE ROBERTO PIMENTEL CAFE TORRADO · COMUNIDADE CAFE TORRADO SEDE SEDE SAO PAULO RURAL" data-s="|76|121|" data-cod="1384" data-lider="13" data-abst="11.8" data-aptos="543" data-v13="372" data-v22="77" data-v70="12" data-v14="1" data-v55="0" data-v27="3" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1384</span>
         <h3>EMEF JOSÉ ROBERTO PIMENTEL</h3>
@@ -315,6 +460,7 @@
       </div>
       <p class="onde">CAFÉ TORRADO · COMUNIDADE CAFÉ TORRADO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="76"><b>76</b><i>273</i></span><span class="sec" data-n="121"><b>121</b><i>270</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>11,8%</b> (64 de 543)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:80.0%"></span></span><span class="vinfo">372 · 80,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:16.6%"></span></span><span class="vinfo">77 · 16,6%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.6%"></span></span><span class="vinfo">12 · 2,6%</span></div><div class="vrow" data-num="27"><span class="vnome">Clariana Barão</span><span class="vfundo"><span class="vbarra coutro" style="width:0.6%"></span></span><span class="vinfo">3 · 0,6%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.2%"></span></span><span class="vinfo">1 · 0,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>543</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.294588,-56.075548" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -322,7 +468,7 @@
       <button class="coord" data-c="-2.294588, -56.075548">-2.294588, -56.075548 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1236 EMEIF GRIGORIO ARAUJO SAO PEDRO · COMUNIDADE SAO PEDRO, RODOVIA PA 257, KM 08 SEDE SEDE SAO PAULO RURAL" data-s="|53|119|" data-cod="1236">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1236 EMEIF GRIGORIO ARAUJO SAO PEDRO · COMUNIDADE SAO PEDRO, RODOVIA PA 257, KM 08 SEDE SEDE SAO PAULO RURAL" data-s="|53|119|" data-cod="1236" data-lider="13" data-abst="19.8" data-aptos="536" data-v13="275" data-v22="121" data-v70="7" data-v14="9" data-v55="1" data-v27="1" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1236</span>
         <h3>EMEIF GRIGORIO ARAUJO</h3>
@@ -330,6 +476,7 @@
       </div>
       <p class="onde">SÃO PEDRO · COMUNIDADE SÃO PEDRO, RODOVIA PA 257, KM 08</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="53"><b>53</b><i>268</i></span><span class="sec" data-n="119"><b>119</b><i>269</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,8%</b> (106 de 536)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:66.4%"></span></span><span class="vinfo">275 · 66,4%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:29.2%"></span></span><span class="vinfo">121 · 29,2%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:2.2%"></span></span><span class="vinfo">9 · 2,2%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.7%"></span></span><span class="vinfo">7 · 1,7%</span></div><div class="vrow" data-num="27"><span class="vnome">Clariana Barão</span><span class="vfundo"><span class="vbarra coutro" style="width:0.2%"></span></span><span class="vinfo">1 · 0,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>537</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.248017,-56.066340" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -337,7 +484,7 @@
       <button class="coord" data-c="-2.248017, -56.066340">-2.248017, -56.066340 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1171 EMEIF JOSE BONIFACIO DE SOUZA SAO JOSE · COMUNIDADE VILA SOUSA   CURUMUCURI SEDE SEDE CURUMUCURI RURAL" data-s="|41|42|" data-cod="1171">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1171 EMEIF JOSE BONIFACIO DE SOUZA SAO JOSE · COMUNIDADE VILA SOUSA   CURUMUCURI SEDE SEDE CURUMUCURI RURAL" data-s="|41|42|" data-cod="1171" data-lider="13" data-abst="13.4" data-aptos="463" data-v13="318" data-v22="70" data-v70="2" data-v14="0" data-v55="2" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1171</span>
         <h3>EMEIF JOSÉ BONIFÁCIO DE SOUZA</h3>
@@ -345,6 +492,7 @@
       </div>
       <p class="onde">SÃO JOSÉ · COMUNIDADE VILA SOUSA - CURUMUCURI</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="41"><b>41</b><i>233</i></span><span class="sec" data-n="42"><b>42</b><i>230</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>13,4%</b> (62 de 463)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:81.1%"></span></span><span class="vinfo">318 · 81,1%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:17.9%"></span></span><span class="vinfo">70 · 17,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">2 · 0,5%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">2 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>463</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.163265,-55.989495" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -352,7 +500,7 @@
       <button class="coord" data-c="-2.163265, -55.989495">-2.163265, -55.989495 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1325 EMEF MARIA MADALENA BARBOSA LOPES SANTA ROSA · COMUNIDADE SANTA ROSA SEDE SEDE IGARAPE DO SALE RURAL" data-s="|70|125|" data-cod="1325">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1325 EMEF MARIA MADALENA BARBOSA LOPES SANTA ROSA · COMUNIDADE SANTA ROSA SEDE SEDE IGARAPE DO SALE RURAL" data-s="|70|125|" data-cod="1325" data-lider="13" data-abst="9.2" data-aptos="426" data-v13="249" data-v22="123" data-v70="3" data-v14="2" data-v55="0" data-v27="0" data-v80="1" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1325</span>
         <h3>EMEF MARIA MADALENA BARBOSA LOPES</h3>
@@ -360,6 +508,7 @@
       </div>
       <p class="onde">SANTA ROSA · COMUNIDADE SANTA ROSA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="70"><b>70</b><i>218</i></span><span class="sec" data-n="125"><b>125</b><i>209</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>9,2%</b> (39 de 426)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:65.9%"></span></span><span class="vinfo">249 · 65,9%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:32.5%"></span></span><span class="vinfo">123 · 32,5%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.8%"></span></span><span class="vinfo">3 · 0,8%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">2 · 0,5%</span></div><div class="vrow" data-num="80"><span class="vnome">Samara</span><span class="vfundo"><span class="vbarra coutro" style="width:0.3%"></span></span><span class="vinfo">1 · 0,3%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>427</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.146697,-55.960774" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -367,7 +516,7 @@
       <button class="coord" data-c="-2.146697, -55.960774">-2.146697, -55.960774 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1368 EMEIF PEDRO RODRIGUES DE SOUZA BATATA · COMUNIDADE BATATA SEDE SEDE BATATA RURAL" data-s="|74|" data-cod="1368">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1368 EMEIF PEDRO RODRIGUES DE SOUZA BATATA · COMUNIDADE BATATA SEDE SEDE BATATA RURAL" data-s="|74|" data-cod="1368" data-lider="13" data-abst="15.5" data-aptos="367" data-v13="195" data-v22="93" data-v70="6" data-v14="3" data-v55="4" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1368</span>
         <h3>EMEIF PEDRO RODRIGUES DE SOUZA</h3>
@@ -375,6 +524,7 @@
       </div>
       <p class="onde">BATATA · COMUNIDADE BATATA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="74"><b>74</b><i>367</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>15,5%</b> (57 de 367)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:64.8%"></span></span><span class="vinfo">195 · 64,8%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:30.9%"></span></span><span class="vinfo">93 · 30,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.0%"></span></span><span class="vinfo">6 · 2,0%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:1.3%"></span></span><span class="vinfo">4 · 1,3%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.0%"></span></span><span class="vinfo">3 · 1,0%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>367</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.404177,-55.919415" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -382,7 +532,7 @@
       <button class="coord" data-c="-2.404177, -55.919415">-2.404177, -55.919415 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1708 EMEI DISNEYLANDIA CIDADE · RUA GOV. FERNANDO GUILHON, S/N SEDE SEDE CIDADE URBANO" data-s="|130|" data-cod="1708">
+    <article class="card tem-lider-22" data-d="SEDE" data-b="1708 EMEI DISNEYLANDIA CIDADE · RUA GOV. FERNANDO GUILHON, S/N SEDE SEDE CIDADE URBANO" data-s="|130|" data-cod="1708" data-lider="22" data-abst="28.7" data-aptos="307" data-v13="81" data-v22="111" data-v70="12" data-v14="10" data-v55="0" data-v27="0" data-v80="0" data-v30="1" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1708</span>
         <h3>EMEI DISNEYLANDIA</h3>
@@ -390,6 +540,7 @@
       </div>
       <p class="onde">CIDADE · RUA GOV. FERNANDO GUILHON, S/N</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="130"><b>130</b><i>307</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>28,7%</b> (88 de 307)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:51.6%"></span></span><span class="vinfo">111 · 51,6%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:37.7%"></span></span><span class="vinfo">81 · 37,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:5.6%"></span></span><span class="vinfo">12 · 5,6%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:4.7%"></span></span><span class="vinfo">10 · 4,7%</span></div><div class="vrow" data-num="30"><span class="vnome">Zema</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">1 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>307</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.156949,-56.091761" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -397,7 +548,7 @@
       <button class="coord" data-c="-2.156949, -56.091761">-2.156949, -56.091761 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1678 EMEI JOSE MARIA DA SILVA JABUTI · COMUNIDADE JABUTI, RODOVIA PA 192, KM 27 SEDE SEDE BATATA RURAL" data-s="|124|" data-cod="1678">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1678 EMEI JOSE MARIA DA SILVA JABUTI · COMUNIDADE JABUTI, RODOVIA PA 192, KM 27 SEDE SEDE BATATA RURAL" data-s="|124|" data-cod="1678" data-lider="13" data-abst="14.7" data-aptos="251" data-v13="111" data-v22="84" data-v70="0" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1678</span>
         <h3>EMEI JOSÉ MARIA DA SILVA</h3>
@@ -405,6 +556,7 @@
       </div>
       <p class="onde">JABUTI · COMUNIDADE JABUTI, RODOVIA PA 192, KM 27</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="124"><b>124</b><i>251</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>14,7%</b> (37 de 251)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:56.9%"></span></span><span class="vinfo">111 · 56,9%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:43.1%"></span></span><span class="vinfo">84 · 43,1%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>251</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.378062,-56.024002" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -412,7 +564,7 @@
       <button class="coord" data-c="-2.378062, -56.024002">-2.378062, -56.024002 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1457 EMEIF SAO FRANCISCO SAO FRANCISCO DO ARUA · COMUNIDADE SAO FRANCISCO DO ALTO ARUA SEDE SEDE BATATA RURAL" data-s="|89|" data-cod="1457">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1457 EMEIF SAO FRANCISCO SAO FRANCISCO DO ARUA · COMUNIDADE SAO FRANCISCO DO ALTO ARUA SEDE SEDE BATATA RURAL" data-s="|89|" data-cod="1457" data-lider="13" data-abst="23.9" data-aptos="243" data-v13="159" data-v22="18" data-v70="2" data-v14="2" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1457</span>
         <h3>EMEIF SÃO FRANCISCO</h3>
@@ -420,6 +572,7 @@
       </div>
       <p class="onde">SÃO FRANCISCO DO ARUÃ · COMUNIDADE SÃO FRANCISCO DO ALTO ARUÃ</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="89"><b>89</b><i>243</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>23,9%</b> (58 de 243)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:87.8%"></span></span><span class="vinfo">159 · 87,8%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:9.9%"></span></span><span class="vinfo">18 · 9,9%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.1%"></span></span><span class="vinfo">2 · 1,1%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.1%"></span></span><span class="vinfo">2 · 1,1%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>243</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.605144,-55.905986" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -427,7 +580,7 @@
       <button class="coord" data-c="-2.605144, -55.905986">-2.605144, -55.905986 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1473 EMEIF MANOEL TEIXEIRA SANTA TEREZENHA · COMUNIDADE SANTA TEREZINHA   LAGO DAS PIRANHAS SEDE SEDE SAO PAULO RURAL TEREZINHA" data-s="|91|" data-cod="1473">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1473 EMEIF MANOEL TEIXEIRA SANTA TEREZENHA · COMUNIDADE SANTA TEREZINHA   LAGO DAS PIRANHAS SEDE SEDE SAO PAULO RURAL TEREZINHA" data-s="|91|" data-cod="1473" data-lider="13" data-abst="17.8" data-aptos="241" data-v13="144" data-v22="43" data-v70="1" data-v14="3" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1473</span>
         <h3>EMEIF MANOEL TEIXEIRA</h3>
@@ -435,6 +588,7 @@
       </div>
       <p class="onde">SANTA TEREZENHA · COMUNIDADE SANTA TEREZINHA - LAGO DAS PIRANHAS</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="91"><b>91</b><i>241</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>17,8%</b> (43 de 241)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:75.0%"></span></span><span class="vinfo">144 · 75,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:22.4%"></span></span><span class="vinfo">43 · 22,4%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.6%"></span></span><span class="vinfo">3 · 1,6%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">1 · 0,5%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">1 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>241</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.209809,-56.115388" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -442,7 +596,7 @@
       <button class="coord" data-c="-2.209809, -56.115388">-2.209809, -56.115388 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1392 SEDE SOCIAL DA COMUNIDADE BOM QUE DOI BOM QUE DOI · COMUNIDADE BOM QUE DOI SEDE SEDE SAO PAULO RURAL" data-s="|77|" data-cod="1392">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1392 SEDE SOCIAL DA COMUNIDADE BOM QUE DOI BOM QUE DOI · COMUNIDADE BOM QUE DOI SEDE SEDE SAO PAULO RURAL" data-s="|77|" data-cod="1392" data-lider="13" data-abst="14.9" data-aptos="222" data-v13="155" data-v22="27" data-v70="3" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1392</span>
         <h3>SEDE SOCIAL DA COMUNIDADE BOM-QUE-DÓI</h3>
@@ -450,6 +604,7 @@
       </div>
       <p class="onde">BOM-QUE-DÓI · COMUNIDADE BOM QUE DÓI</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="77"><b>77</b><i>221</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>14,9%</b> (33 de 222)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:83.8%"></span></span><span class="vinfo">155 · 83,8%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:14.6%"></span></span><span class="vinfo">27 · 14,6%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.6%"></span></span><span class="vinfo">3 · 1,6%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>221</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.212980,-56.028750" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -457,7 +612,7 @@
       <button class="coord" data-c="-2.212980, -56.028750">-2.212980, -56.028750 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1317 EMEB TEREZINHA DA SILVA PIMENTEL ARACA BRANCO · COMUNIDADE ARACA BRANCO   IGARAPE DO SALE SEDE SEDE CURUMUCURI RURAL" data-s="|69|" data-cod="1317">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1317 EMEB TEREZINHA DA SILVA PIMENTEL ARACA BRANCO · COMUNIDADE ARACA BRANCO   IGARAPE DO SALE SEDE SEDE CURUMUCURI RURAL" data-s="|69|" data-cod="1317" data-lider="13" data-abst="8.3" data-aptos="206" data-v13="156" data-v22="25" data-v70="1" data-v14="0" data-v55="2" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1317</span>
         <h3>EMEB TEREZINHA DA SILVA PIMENTEL</h3>
@@ -465,6 +620,7 @@
       </div>
       <p class="onde">ARAÇÁ BRANCO · COMUNIDADE ARAÇÁ BRANCO - IGARAPÉ DO SALÉ</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="69"><b>69</b><i>206</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>8,3%</b> (17 de 206)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:84.8%"></span></span><span class="vinfo">156 · 84,8%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:13.6%"></span></span><span class="vinfo">25 · 13,6%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:1.1%"></span></span><span class="vinfo">2 · 1,1%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">1 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>206</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.112070,-55.994040" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -472,7 +628,7 @@
       <button class="coord" data-c="-2.112070, -55.994040">-2.112070, -55.994040 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1120 EM FIRMINO DE SOUZA GUIMARAES SANTA RITA · ILHA DE SANTA RITA SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|35|" data-cod="1120">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1120 EM FIRMINO DE SOUZA GUIMARAES SANTA RITA · ILHA DE SANTA RITA SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|35|" data-cod="1120" data-lider="13" data-abst="22.2" data-aptos="167" data-v13="87" data-v22="32" data-v70="1" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1120</span>
         <h3>EM FIRMINO DE SOUZA GUIMARÃES</h3>
@@ -480,6 +636,7 @@
       </div>
       <p class="onde">SANTA RITA · ILHA DE SANTA RITA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="35"><b>35</b><i>168</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>22,2%</b> (37 de 167)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:72.5%"></span></span><span class="vinfo">87 · 72,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:26.7%"></span></span><span class="vinfo">32 · 26,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.8%"></span></span><span class="vinfo">1 · 0,8%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>168</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-1.996810,-56.039140" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -487,7 +644,7 @@
       <button class="coord" data-c="-1.996810, -56.039140">-1.996810, -56.039140 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1635 EMEI JOSE TANCREDI JUNIOR RECREIO · PARANA DE DONA ROSA SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|37|117|" data-cod="1635">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1635 EMEI JOSE TANCREDI JUNIOR RECREIO · PARANA DE DONA ROSA SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|37|117|" data-cod="1635" data-lider="13" data-abst="17.9" data-aptos="156" data-v13="101" data-v22="18" data-v70="1" data-v14="1" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1635</span>
         <h3>EMEI JOSÉ TANCREDI JUNIOR</h3>
@@ -495,6 +652,7 @@
       </div>
       <p class="onde">RECREIO · PARANÁ DE DONA ROSA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="37"><b>37</b><i>156</i></span><span class="sec" data-n="117"><b>117</b><i>0</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>17,9%</b> (28 de 156)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:83.5%"></span></span><span class="vinfo">101 · 83,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:14.9%"></span></span><span class="vinfo">18 · 14,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.8%"></span></span><span class="vinfo">1 · 0,8%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.8%"></span></span><span class="vinfo">1 · 0,8%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>156</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.067200,-55.949500" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -502,7 +660,7 @@
       <button class="coord" data-c="-2.067200, -55.949500">-2.067200, -55.949500 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1260 EM VITORIO LIMA DOS SANTOS BOM JESUS · COMUNIDADE BOM JESUS SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|56|" data-cod="1260">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1260 EM VITORIO LIMA DOS SANTOS BOM JESUS · COMUNIDADE BOM JESUS SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|56|" data-cod="1260" data-lider="13" data-abst="9.9" data-aptos="111" data-v13="77" data-v22="15" data-v70="3" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1260</span>
         <h3>EM VITÓRIO LIMA DOS SANTOS</h3>
@@ -510,6 +668,7 @@
       </div>
       <p class="onde">BOM JESUS · COMUNIDADE BOM JESUS</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="56"><b>56</b><i>111</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>9,9%</b> (11 de 111)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:81.1%"></span></span><span class="vinfo">77 · 81,1%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:15.8%"></span></span><span class="vinfo">15 · 15,8%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:3.2%"></span></span><span class="vinfo">3 · 3,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>111</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.080240,-56.006090" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -517,7 +676,7 @@
       <button class="coord" data-c="-2.080240, -56.006090">-2.080240, -56.006090 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1252 EM JOAO AUGUSTO DA SILVEIRA IRATEUA · COMUNIDADE IRATEUA SEDE SEDE SANTA RITA RIBEIRINHO IRATEUA IRATEUA" data-s="|55|" data-cod="1252">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1252 EM JOAO AUGUSTO DA SILVEIRA IRATEUA · COMUNIDADE IRATEUA SEDE SEDE SANTA RITA RIBEIRINHO IRATEUA IRATEUA" data-s="|55|" data-cod="1252" data-lider="13" data-abst="17.8" data-aptos="107" data-v13="65" data-v22="20" data-v70="0" data-v14="0" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1252</span>
         <h3>EM JOÃO AUGUSTO DA SILVEIRA</h3>
@@ -525,6 +684,7 @@
       </div>
       <p class="onde">IRATEUA · COMUNIDADE IRATEUA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="55"><b>55</b><i>107</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>17,8%</b> (19 de 107)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:75.6%"></span></span><span class="vinfo">65 · 75,6%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:23.3%"></span></span><span class="vinfo">20 · 23,3%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:1.2%"></span></span><span class="vinfo">1 · 1,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>107</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.028330,-55.790050" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -532,7 +692,7 @@
       <button class="coord" data-c="-2.028330, -55.790050">-2.028330, -55.790050 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1139 EM SAO SEBASTIAO SAO SEBASTIAO · COMUNIDADE SANTA RITA SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|36|" data-cod="1139">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1139 EM SAO SEBASTIAO SAO SEBASTIAO · COMUNIDADE SANTA RITA SEDE SEDE SANTA RITA RIBEIRINHO" data-s="|36|" data-cod="1139" data-lider="13" data-abst="19.8" data-aptos="101" data-v13="48" data-v22="26" data-v70="5" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1139</span>
         <h3>EM SÃO SEBASTIÃO</h3>
@@ -540,6 +700,7 @@
       </div>
       <p class="onde">SÃO SEBASTIÃO · COMUNIDADE SANTA RITA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="36"><b>36</b><i>101</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,8%</b> (20 de 101)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:60.8%"></span></span><span class="vinfo">48 · 60,8%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:32.9%"></span></span><span class="vinfo">26 · 32,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:6.3%"></span></span><span class="vinfo">5 · 6,3%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>101</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-1.978073,-56.041962" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -547,7 +708,7 @@
       <button class="coord" data-c="-1.978073, -56.041962">-1.978073, -56.041962 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1155 SALAO COMUNITARIO NOSSA SENHORA DA CONCEICAO CONCEICAO · COMUNIDADE PARANA DE D.ROSA SEDE SEDE IGARAPE DO SALE RIBEIRINHO" data-s="|38|" data-cod="1155">
+    <article class="card tem-lider-13" data-d="SEDE" data-b="1155 SALAO COMUNITARIO NOSSA SENHORA DA CONCEICAO CONCEICAO · COMUNIDADE PARANA DE D.ROSA SEDE SEDE IGARAPE DO SALE RIBEIRINHO" data-s="|38|" data-cod="1155" data-lider="13" data-abst="13.8" data-aptos="58" data-v13="44" data-v22="5" data-v70="0" data-v14="0" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1155</span>
         <h3>SALÃO COMUNITÁRIO NOSSA SENHORA DA CONCEIÇÃO</h3>
@@ -555,6 +716,7 @@
       </div>
       <p class="onde">CONCEIÇÃO · COMUNIDADE PARANÁ DE D.ROSA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="38"><b>38</b><i>58</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>13,8%</b> (8 de 58)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:88.0%"></span></span><span class="vinfo">44 · 88,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:10.0%"></span></span><span class="vinfo">5 · 10,0%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:2.0%"></span></span><span class="vinfo">1 · 2,0%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>58</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.136340,-55.926100" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -562,7 +724,7 @@
       <button class="coord" data-c="-2.136340, -55.926100">-2.136340, -55.926100 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="SEDE" data-b="1490 EM SANTO ANTONIO NOVO PARAISO DO ARUA · COMUNIDADE DA RECORDACAO SEDE SEDE BATATA RIBEIRINHO" data-s="|93|" data-cod="1490">
+    <article class="card" data-d="SEDE" data-b="1490 EM SANTO ANTONIO NOVO PARAISO DO ARUA · COMUNIDADE DA RECORDACAO SEDE SEDE BATATA RIBEIRINHO" data-s="|93|" data-cod="1490" data-abst="-1" data-aptos="42">
       <div class="top">
         <span class="cod">1490</span>
         <h3>EM SANTO ANTONIO</h3>
@@ -570,6 +732,7 @@
       </div>
       <p class="onde">NOVO PARAÍSO DO ARUÃ · COMUNIDADE DA RECORDAÇÃO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="93"><b>93</b><i>42</i></span></div>
+      <div class="votos"><p class="sem-dados">Sem boletim de urna totalizado para Presidente nesta seção/local.</p></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>42</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.603387,-55.790527" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -581,7 +744,7 @@
   <section class="grupo" data-d="TABATINGA">
     <div class="ghead"><h2>Tabatinga</h2><span>5 locais · 13 seções · 3.488 eleitores</span></div>
     
-    <article class="card" data-d="TABATINGA" data-b="1198 EM MARIO PEREIRA FILHO VILA DE TABATINGA · VILA DA TABATINGA TABATINGA TABATINGA TABATINGA RURAL" data-s="|44|45|46|137|" data-cod="1198">
+    <article class="card tem-lider-22" data-d="TABATINGA" data-b="1198 EM MARIO PEREIRA FILHO VILA DE TABATINGA · VILA DA TABATINGA TABATINGA TABATINGA TABATINGA RURAL" data-s="|44|45|46|137|" data-cod="1198" data-lider="22" data-abst="19.8" data-aptos="1209" data-v13="426" data-v22="470" data-v70="42" data-v14="2" data-v55="5" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1198</span>
         <h3>EM MÁRIO PEREIRA FILHO</h3>
@@ -589,6 +752,7 @@
       </div>
       <p class="onde">VILA DE TABATINGA · VILA DA TABATINGA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="44"><b>44</b><i>378</i></span><span class="sec" data-n="45"><b>45</b><i>383</i></span><span class="sec" data-n="46"><b>46</b><i>379</i></span><span class="sec" data-n="137"><b>137</b><i>69</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,8%</b> (239 de 1209)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:49.7%"></span></span><span class="vinfo">470 · 49,7%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:45.1%"></span></span><span class="vinfo">426 · 45,1%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:4.4%"></span></span><span class="vinfo">42 · 4,4%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">5 · 0,5%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.2%"></span></span><span class="vinfo">2 · 0,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>4</b> seç. · <b>1.209</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.261230,-55.782213" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -596,7 +760,7 @@
       <button class="coord" data-c="-2.261230, -55.782213">-2.261230, -55.782213 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="TABATINGA" data-b="1643 EMEI ANTONIO MOREIRA DA ROCHA BOA ESPERANCA · COMUNIDADE BOA ESPERANCA TABATINGA TABATINGA TABATINGA RURAL" data-s="|57|58|116|" data-cod="1643">
+    <article class="card tem-lider-13" data-d="TABATINGA" data-b="1643 EMEI ANTONIO MOREIRA DA ROCHA BOA ESPERANCA · COMUNIDADE BOA ESPERANCA TABATINGA TABATINGA TABATINGA RURAL" data-s="|57|58|116|" data-cod="1643" data-lider="13" data-abst="21.9" data-aptos="931" data-v13="559" data-v22="120" data-v70="17" data-v14="2" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="1" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1643</span>
         <h3>EMEI ANTÔNIO MOREIRA DA ROCHA</h3>
@@ -604,6 +768,7 @@
       </div>
       <p class="onde">BOA ESPERANÇA · COMUNIDADE BOA ESPERANÇA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="57"><b>57</b><i>313</i></span><span class="sec" data-n="58"><b>58</b><i>308</i></span><span class="sec" data-n="116"><b>116</b><i>312</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>21,9%</b> (204 de 931)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:80.0%"></span></span><span class="vinfo">559 · 80,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:17.2%"></span></span><span class="vinfo">120 · 17,2%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.4%"></span></span><span class="vinfo">17 · 2,4%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.3%"></span></span><span class="vinfo">2 · 0,3%</span></div><div class="vrow" data-num="21"><span class="vnome">Edmilson Costa</span><span class="vfundo"><span class="vbarra coutro" style="width:0.1%"></span></span><span class="vinfo">1 · 0,1%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>3</b> seç. · <b>933</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.356115,-55.699756" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -611,7 +776,7 @@
       <button class="coord" data-c="-2.356115, -55.699756">-2.356115, -55.699756 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="TABATINGA" data-b="1201 CENTRO SOCIAL DA PAROQUIA VILA DE TABATINGA · VILA DA TABATINGA, S/N TABATINGA TABATINGA TABATINGA RURAL" data-s="|47|48|" data-cod="1201">
+    <article class="card tem-lider-13" data-d="TABATINGA" data-b="1201 CENTRO SOCIAL DA PAROQUIA VILA DE TABATINGA · VILA DA TABATINGA, S/N TABATINGA TABATINGA TABATINGA RURAL" data-s="|47|48|" data-cod="1201" data-lider="13" data-abst="19.3" data-aptos="721" data-v13="285" data-v22="260" data-v70="14" data-v14="2" data-v55="4" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1201</span>
         <h3>CENTRO SOCIAL DA PARÓQUIA</h3>
@@ -619,6 +784,7 @@
       </div>
       <p class="onde">VILA DE TABATINGA · VILA DA TABATINGA, S/N</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="47"><b>47</b><i>361</i></span><span class="sec" data-n="48"><b>48</b><i>361</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,3%</b> (139 de 721)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:50.4%"></span></span><span class="vinfo">285 · 50,4%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:46.0%"></span></span><span class="vinfo">260 · 46,0%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.5%"></span></span><span class="vinfo">14 · 2,5%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.7%"></span></span><span class="vinfo">4 · 0,7%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">2 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>722</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.252080,-55.778390" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -626,7 +792,7 @@
       <button class="coord" data-c="-2.252080, -55.778390">-2.252080, -55.778390 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="TABATINGA" data-b="1244 EM SEBASTIAO MARIALVA DA SILVA TERRA PRETA DO SALE · COMUNIDADE TERRA PRETA DO SALE TABATINGA TABATINGA TABATINGA RURAL" data-s="|54|128|" data-cod="1244">
+    <article class="card tem-lider-13" data-d="TABATINGA" data-b="1244 EM SEBASTIAO MARIALVA DA SILVA TERRA PRETA DO SALE · COMUNIDADE TERRA PRETA DO SALE TABATINGA TABATINGA TABATINGA RURAL" data-s="|54|128|" data-cod="1244" data-lider="13" data-abst="19.7" data-aptos="431" data-v13="254" data-v22="74" data-v70="3" data-v14="4" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1244</span>
         <h3>EM SEBASTIÃO MARIALVA DA SILVA</h3>
@@ -634,6 +800,7 @@
       </div>
       <p class="onde">TERRA PRETA DO SALÉ · COMUNIDADE TERRA PRETA DO SALÉ</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="54"><b>54</b><i>317</i></span><span class="sec" data-n="128"><b>128</b><i>115</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,7%</b> (85 de 431)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:75.6%"></span></span><span class="vinfo">254 · 75,6%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:22.0%"></span></span><span class="vinfo">74 · 22,0%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.2%"></span></span><span class="vinfo">4 · 1,2%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.9%"></span></span><span class="vinfo">3 · 0,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.3%"></span></span><span class="vinfo">1 · 0,3%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>432</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.303857,-55.781140" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -641,7 +808,7 @@
       <button class="coord" data-c="-2.303857, -55.781140">-2.303857, -55.781140 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="TABATINGA" data-b="1724 EMEIF NOSSA SENHORA DO CARMO NOSSA SENHORA DO CARMO · COMUNIDADE NOSSA SENHORA DO CARMO, IGARAPE DAS FAZENDAS TABATINGA TABATINGA TABATINGA RURAL" data-s="|43|138|" data-cod="1724">
+    <article class="card tem-lider-13" data-d="TABATINGA" data-b="1724 EMEIF NOSSA SENHORA DO CARMO NOSSA SENHORA DO CARMO · COMUNIDADE NOSSA SENHORA DO CARMO, IGARAPE DAS FAZENDAS TABATINGA TABATINGA TABATINGA RURAL" data-s="|43|138|" data-cod="1724" data-lider="13" data-abst="18.2" data-aptos="192" data-v13="101" data-v22="43" data-v70="4" data-v14="0" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1724</span>
         <h3>EMEIF NOSSA SENHORA DO CARMO</h3>
@@ -649,6 +816,7 @@
       </div>
       <p class="onde">NOSSA SENHORA DO CARMO · COMUNIDADE NOSSA SENHORA DO CARMO, IGARAPÉ DAS FAZENDAS</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="43"><b>43</b><i>181</i></span><span class="sec" data-n="138"><b>138</b><i>11</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>18,2%</b> (35 de 192)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:67.8%"></span></span><span class="vinfo">101 · 67,8%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:28.9%"></span></span><span class="vinfo">43 · 28,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.7%"></span></span><span class="vinfo">4 · 2,7%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.7%"></span></span><span class="vinfo">1 · 0,7%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>192</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.188428,-55.705634" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -660,7 +828,7 @@
   <section class="grupo" data-d="CASTANHAL">
     <div class="ghead"><h2>Castanhal</h2><span>6 locais · 10 seções · 2.922 eleitores</span></div>
     
-    <article class="card" data-d="CASTANHAL" data-b="1210 EMEF GETULIO VARGAS VILA DE CASTANHAL CASTANHAL CASTANHAL CASTANHAL RURAL" data-s="|49|50|110|" data-cod="1210">
+    <article class="card tem-lider-13" data-d="CASTANHAL" data-b="1210 EMEF GETULIO VARGAS VILA DE CASTANHAL CASTANHAL CASTANHAL CASTANHAL RURAL" data-s="|49|50|110|" data-cod="1210" data-lider="13" data-abst="17.1" data-aptos="1030" data-v13="524" data-v22="280" data-v70="12" data-v14="4" data-v55="4" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1210</span>
         <h3>EMEF GETÚLIO VARGAS</h3>
@@ -668,6 +836,7 @@
       </div>
       <p class="onde">VILA DE CASTANHAL</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="49"><b>49</b><i>344</i></span><span class="sec" data-n="50"><b>50</b><i>345</i></span><span class="sec" data-n="110"><b>110</b><i>343</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>17,1%</b> (176 de 1030)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:63.6%"></span></span><span class="vinfo">524 · 63,6%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:34.0%"></span></span><span class="vinfo">280 · 34,0%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.5%"></span></span><span class="vinfo">12 · 1,5%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">4 · 0,5%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">4 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>3</b> seç. · <b>1.032</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.234325,-55.860604" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -675,7 +844,7 @@
       <button class="coord" data-c="-2.234325, -55.860604">-2.234325, -55.860604 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="CASTANHAL" data-b="1228 EMEF RAIMUNDO DE ASSIS MASCARENHAS AREIAL I · COMUNIDADE AREIAL I CASTANHAL CASTANHAL AREIAL RURAL AREAL" data-s="|51|52|" data-cod="1228">
+    <article class="card tem-lider-13" data-d="CASTANHAL" data-b="1228 EMEF RAIMUNDO DE ASSIS MASCARENHAS AREIAL I · COMUNIDADE AREIAL I CASTANHAL CASTANHAL AREIAL RURAL AREAL" data-s="|51|52|" data-cod="1228" data-lider="13" data-abst="13.9" data-aptos="667" data-v13="408" data-v22="140" data-v70="3" data-v14="2" data-v55="2" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1228</span>
         <h3>EMEF RAIMUNDO DE ASSIS MASCARENHAS</h3>
@@ -683,6 +852,7 @@
       </div>
       <p class="onde">AREIAL I · COMUNIDADE AREIAL I</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="51"><b>51</b><i>335</i></span><span class="sec" data-n="52"><b>52</b><i>333</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>13,9%</b> (93 de 667)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:73.5%"></span></span><span class="vinfo">408 · 73,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:25.2%"></span></span><span class="vinfo">140 · 25,2%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">3 · 0,5%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">2 · 0,4%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">2 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>668</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.203880,-55.897170" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -690,7 +860,7 @@
       <button class="coord" data-c="-2.203880, -55.897170">-2.203880, -55.897170 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="CASTANHAL" data-b="1295 EMEF ANA MARIA ALBUQUERQUE IGARAPE ACU · COMUNIDADE IGARAPE ACU CASTANHAL CASTANHAL CASTANHAL RURAL" data-s="|60|61|" data-cod="1295">
+    <article class="card tem-lider-13" data-d="CASTANHAL" data-b="1295 EMEF ANA MARIA ALBUQUERQUE IGARAPE ACU · COMUNIDADE IGARAPE ACU CASTANHAL CASTANHAL CASTANHAL RURAL" data-s="|60|61|" data-cod="1295" data-lider="13" data-abst="18.9" data-aptos="551" data-v13="251" data-v22="182" data-v70="3" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1295</span>
         <h3>EMEF ANA MARIA ALBUQUERQUE</h3>
@@ -698,6 +868,7 @@
       </div>
       <p class="onde">IGARAPÉ-AÇU · COMUNIDADE IGARAPÉ AÇU</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="60"><b>60</b><i>278</i></span><span class="sec" data-n="61"><b>61</b><i>274</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>18,9%</b> (104 de 551)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:57.6%"></span></span><span class="vinfo">251 · 57,6%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:41.7%"></span></span><span class="vinfo">182 · 41,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.7%"></span></span><span class="vinfo">3 · 0,7%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>552</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.264024,-55.834143" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -705,7 +876,7 @@
       <button class="coord" data-c="-2.264024, -55.834143">-2.264024, -55.834143 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="CASTANHAL" data-b="1376 EMEIF SAO JOSE BOA VISTA · COMUNIDADE BOA VISTA CASTANHAL CASTANHAL CASTANHAL RURAL" data-s="|75|" data-cod="1376">
+    <article class="card tem-lider-13" data-d="CASTANHAL" data-b="1376 EMEIF SAO JOSE BOA VISTA · COMUNIDADE BOA VISTA CASTANHAL CASTANHAL CASTANHAL RURAL" data-s="|75|" data-cod="1376" data-lider="13" data-abst="18.3" data-aptos="273" data-v13="143" data-v22="69" data-v70="3" data-v14="0" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1376</span>
         <h3>EMEIF SÃO JOSÉ</h3>
@@ -713,6 +884,7 @@
       </div>
       <p class="onde">BOA VISTA · COMUNIDADE BOA VISTA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="75"><b>75</b><i>274</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>18,3%</b> (50 de 273)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:66.2%"></span></span><span class="vinfo">143 · 66,2%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:31.9%"></span></span><span class="vinfo">69 · 31,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.4%"></span></span><span class="vinfo">3 · 1,4%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">1 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>274</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.305208,-55.911286" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -720,7 +892,7 @@
       <button class="coord" data-c="-2.305208, -55.911286">-2.305208, -55.911286 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="CASTANHAL" data-b="1546 EMEIF JOAO SILVA MASCARENHA FERRUGEM · COMUNIDADE FERRUGEM CASTANHAL CASTANHAL FERRUGEM RURAL" data-s="|105|" data-cod="1546">
+    <article class="card tem-lider-22" data-d="CASTANHAL" data-b="1546 EMEIF JOAO SILVA MASCARENHA FERRUGEM · COMUNIDADE FERRUGEM CASTANHAL CASTANHAL FERRUGEM RURAL" data-s="|105|" data-cod="1546" data-lider="22" data-abst="12.4" data-aptos="251" data-v13="93" data-v22="115" data-v70="3" data-v14="0" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1546</span>
         <h3>EMEIF JOÃO SILVA MASCARENHA</h3>
@@ -728,6 +900,7 @@
       </div>
       <p class="onde">FERRUGEM · COMUNIDADE FERRUGEM</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="105"><b>105</b><i>252</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>12,4%</b> (31 de 251)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:54.2%"></span></span><span class="vinfo">115 · 54,2%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:43.9%"></span></span><span class="vinfo">93 · 43,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.4%"></span></span><span class="vinfo">3 · 1,4%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">1 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>252</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.284657,-55.839282" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -735,7 +908,7 @@
       <button class="coord" data-c="-2.284657, -55.839282">-2.284657, -55.839282 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="CASTANHAL" data-b="1660 EMEI FIRMINO ARAUJO SAO JERONIMO · COMUNIDADE SAO JERONIMO CASTANHAL CASTANHAL AREIAL RURAL AREAL" data-s="|123|" data-cod="1660">
+    <article class="card tem-lider-13" data-d="CASTANHAL" data-b="1660 EMEI FIRMINO ARAUJO SAO JERONIMO · COMUNIDADE SAO JERONIMO CASTANHAL CASTANHAL AREIAL RURAL AREAL" data-s="|123|" data-cod="1660" data-lider="13" data-abst="6.9" data-aptos="144" data-v13="70" data-v22="63" data-v70="0" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1660</span>
         <h3>EMEI FIRMINO ARAÚJO</h3>
@@ -743,6 +916,7 @@
       </div>
       <p class="onde">SÃO JERÔNIMO · COMUNIDADE SÃO JERÔNIMO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="123"><b>123</b><i>144</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>6,9%</b> (10 de 144)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:52.6%"></span></span><span class="vinfo">70 · 52,6%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:47.4%"></span></span><span class="vinfo">63 · 47,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>144</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.173521,-55.933592" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -754,7 +928,7 @@
   <section class="grupo" data-d="MUIRAPINIMA">
     <div class="ghead"><h2>Juruti Velho</h2><span>14 locais · 26 seções · 6.684 eleitores</span></div>
     
-    <article class="card" data-d="MUIRAPINIMA" data-b="1104 EMEIF MIRIAN BENITAH VILA MUIRAPINIMA · VILA DE JURUTI VELHO JURUTI VELHO MUIRAPINIMA JURUTI VELHO RIBEIRINHO" data-s="|30|31|32|33|127|" data-cod="1104">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1104 EMEIF MIRIAN BENITAH VILA MUIRAPINIMA · VILA DE JURUTI VELHO JURUTI VELHO MUIRAPINIMA JURUTI VELHO RIBEIRINHO" data-s="|30|31|32|33|127|" data-cod="1104" data-lider="13" data-abst="16.3" data-aptos="1772" data-v13="1017" data-v22="402" data-v70="12" data-v14="7" data-v55="1" data-v27="1" data-v80="1" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1104</span>
         <h3>EMEIF MIRIAN BENITAH</h3>
@@ -762,6 +936,7 @@
       </div>
       <p class="onde">VILA MUIRAPINIMA · VILA DE JURUTI VELHO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="30"><b>30</b><i>355</i></span><span class="sec" data-n="31"><b>31</b><i>353</i></span><span class="sec" data-n="32"><b>32</b><i>357</i></span><span class="sec" data-n="33"><b>33</b><i>355</i></span><span class="sec" data-n="127"><b>127</b><i>353</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>16,3%</b> (289 de 1772)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:70.6%"></span></span><span class="vinfo">1017 · 70,6%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:27.9%"></span></span><span class="vinfo">402 · 27,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.8%"></span></span><span class="vinfo">12 · 0,8%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">7 · 0,5%</span></div><div class="vrow" data-num="27"><span class="vnome">Clariana Barão</span><span class="vfundo"><span class="vbarra coutro" style="width:0.1%"></span></span><span class="vinfo">1 · 0,1%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>5</b> seç. · <b>1.773</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.399364,-56.304450" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -769,7 +944,7 @@
       <button class="coord" data-c="-2.399364, -56.304450">-2.399364, -56.304450 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1090 EEEM PROFESSORA ZENITA FREITAS DE MATOS VILA MUIRAPINIMA · VILA DE JURUTI VELHO   MUIRAPINIMA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RIBEIRINHO" data-s="|27|28|29|" data-cod="1090">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1090 EEEM PROFESSORA ZENITA FREITAS DE MATOS VILA MUIRAPINIMA · VILA DE JURUTI VELHO   MUIRAPINIMA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RIBEIRINHO" data-s="|27|28|29|" data-cod="1090" data-lider="13" data-abst="19.2" data-aptos="1091" data-v13="601" data-v22="236" data-v70="9" data-v14="8" data-v55="5" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1090</span>
         <h3>EEEM PROFESSORA ZENITA FREITAS DE MATOS</h3>
@@ -777,6 +952,7 @@
       </div>
       <p class="onde">VILA MUIRAPINIMA · VILA DE JURUTI VELHO - MUIRAPINIMA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="27"><b>27</b><i>366</i></span><span class="sec" data-n="28"><b>28</b><i>363</i></span><span class="sec" data-n="29"><b>29</b><i>363</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,2%</b> (209 de 1091)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:70.0%"></span></span><span class="vinfo">601 · 70,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:27.5%"></span></span><span class="vinfo">236 · 27,5%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.0%"></span></span><span class="vinfo">9 · 1,0%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.9%"></span></span><span class="vinfo">8 · 0,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.6%"></span></span><span class="vinfo">5 · 0,6%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>3</b> seç. · <b>1.092</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.396659,-56.304383" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -784,7 +960,7 @@
       <button class="coord" data-c="-2.396659, -56.304383">-2.396659, -56.304383 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1074 EMEF PROFESSORA MARIA DO CARMO MENEZES MIRI CENTRO · JURUTI MIRI JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|23|24|129|" data-cod="1074">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1074 EMEF PROFESSORA MARIA DO CARMO MENEZES MIRI CENTRO · JURUTI MIRI JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|23|24|129|" data-cod="1074" data-lider="13" data-abst="21.4" data-aptos="863" data-v13="545" data-v22="102" data-v70="6" data-v14="1" data-v55="3" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1074</span>
         <h3>EMEF PROFESSORA MARIA DO CARMO MENEZES</h3>
@@ -792,6 +968,7 @@
       </div>
       <p class="onde">MIRI-CENTRO · JURUTI MIRI</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="23"><b>23</b><i>293</i></span><span class="sec" data-n="24"><b>24</b><i>307</i></span><span class="sec" data-n="129"><b>129</b><i>263</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>21,4%</b> (185 de 863)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:83.0%"></span></span><span class="vinfo">545 · 83,0%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:15.5%"></span></span><span class="vinfo">102 · 15,5%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.9%"></span></span><span class="vinfo">6 · 0,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">3 · 0,5%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.2%"></span></span><span class="vinfo">1 · 0,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>3</b> seç. · <b>863</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.257500,-56.181500" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -799,7 +976,7 @@
       <button class="coord" data-c="-2.257500, -56.181500">-2.257500, -56.181500 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1350 EMEIF SABINO PINHEIRO DE MATOS MARAVILHA · COMUNIDADE MARAVILHA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RIBEIRINHO" data-s="|73|126|" data-cod="1350">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1350 EMEIF SABINO PINHEIRO DE MATOS MARAVILHA · COMUNIDADE MARAVILHA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RIBEIRINHO" data-s="|73|126|" data-cod="1350" data-lider="13" data-abst="16.5" data-aptos="527" data-v13="346" data-v22="74" data-v70="2" data-v14="8" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1350</span>
         <h3>EMEIF SABINO PINHEIRO DE MATOS</h3>
@@ -807,6 +984,7 @@
       </div>
       <p class="onde">MARAVILHA · COMUNIDADE MARAVILHA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="73"><b>73</b><i>345</i></span><span class="sec" data-n="126"><b>126</b><i>183</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>16,5%</b> (87 de 527)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:80.5%"></span></span><span class="vinfo">346 · 80,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:17.2%"></span></span><span class="vinfo">74 · 17,2%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.9%"></span></span><span class="vinfo">8 · 1,9%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">2 · 0,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>528</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.399862,-56.221058" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -814,7 +992,7 @@
       <button class="coord" data-c="-2.399862, -56.221058">-2.399862, -56.221058 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1082 EMEIF RAIMUNDO ANTONIO NUNES UXITUBA · COMUNIDADE UXITUBA JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|25|26|" data-cod="1082">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1082 EMEIF RAIMUNDO ANTONIO NUNES UXITUBA · COMUNIDADE UXITUBA JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|25|26|" data-cod="1082" data-lider="13" data-abst="19.7" data-aptos="513" data-v13="301" data-v22="94" data-v70="5" data-v14="1" data-v55="2" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1082</span>
         <h3>EMEIF RAIMUNDO ANTÔNIO NUNES</h3>
@@ -822,6 +1000,7 @@
       </div>
       <p class="onde">UXITUBA · COMUNIDADE UXITUBA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="25"><b>25</b><i>258</i></span><span class="sec" data-n="26"><b>26</b><i>255</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,7%</b> (101 de 513)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:74.7%"></span></span><span class="vinfo">301 · 74,7%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:23.3%"></span></span><span class="vinfo">94 · 23,3%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.2%"></span></span><span class="vinfo">5 · 1,2%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.5%"></span></span><span class="vinfo">2 · 0,5%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.2%"></span></span><span class="vinfo">1 · 0,2%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>513</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.307854,-56.259727" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -829,7 +1008,7 @@
       <button class="coord" data-c="-2.307854, -56.259727">-2.307854, -56.259727 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1333 EMEB PROFESSORA LINDETE EVANGELISTA DE SOUZA NOVA GALILEIA · COMUNIDADE GALILEIA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL GALILEA" data-s="|71|133|" data-cod="1333">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1333 EMEB PROFESSORA LINDETE EVANGELISTA DE SOUZA NOVA GALILEIA · COMUNIDADE GALILEIA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL GALILEA" data-s="|71|133|" data-cod="1333" data-lider="13" data-abst="19.1" data-aptos="450" data-v13="228" data-v22="120" data-v70="9" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1333</span>
         <h3>EMEB PROFESSORA LINDETE EVANGELISTA DE SOUZA</h3>
@@ -837,6 +1016,7 @@
       </div>
       <p class="onde">NOVA GALILEIA · COMUNIDADE GALILÉIA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="71"><b>71</b><i>316</i></span><span class="sec" data-n="133"><b>133</b><i>92</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>19,1%</b> (86 de 450)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:63.9%"></span></span><span class="vinfo">228 · 63,9%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:33.6%"></span></span><span class="vinfo">120 · 33,6%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.5%"></span></span><span class="vinfo">9 · 2,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>408</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.518293,-56.341366" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -844,7 +1024,7 @@
       <button class="coord" data-c="-2.518293, -56.341366">-2.518293, -56.341366 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1341 EMEF MANOEL PEREIRA CUNHA SANTO ANTONIO DA INGRACIA · COMUNIDADE SANTO ANTONIO DA INGRACIA JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|72|" data-cod="1341">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1341 EMEF MANOEL PEREIRA CUNHA SANTO ANTONIO DA INGRACIA · COMUNIDADE SANTO ANTONIO DA INGRACIA JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|72|" data-cod="1341" data-lider="13" data-abst="17.3" data-aptos="341" data-v13="230" data-v22="43" data-v70="1" data-v14="0" data-v55="4" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1341</span>
         <h3>EMEF MANOEL PEREIRA CUNHA</h3>
@@ -852,6 +1032,7 @@
       </div>
       <p class="onde">SANTO ANTÔNIO DA INGRÁCIA · COMUNIDADE SANTO ANTÔNIO DA INGRÁCIA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="72"><b>72</b><i>341</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>17,3%</b> (59 de 341)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:82.7%"></span></span><span class="vinfo">230 · 82,7%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:15.5%"></span></span><span class="vinfo">43 · 15,5%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:1.4%"></span></span><span class="vinfo">4 · 1,4%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">1 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>341</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.376700,-56.339500" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -859,7 +1040,7 @@
       <button class="coord" data-c="-2.376700, -56.339500">-2.376700, -56.339500 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1287 EMEIF MANOEL GUERREIRO RODRIGUES ARACA PRETO · COMUNIDADE ARACA PRETO JURUTI VELHO MUIRAPINIMA JURUTI MIRI RURAL" data-s="|59|" data-cod="1287">
+    <article class="card tem-lider-22" data-d="MUIRAPINIMA" data-b="1287 EMEIF MANOEL GUERREIRO RODRIGUES ARACA PRETO · COMUNIDADE ARACA PRETO JURUTI VELHO MUIRAPINIMA JURUTI MIRI RURAL" data-s="|59|" data-cod="1287" data-lider="22" data-abst="21.8" data-aptos="285" data-v13="90" data-v22="127" data-v70="5" data-v14="0" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1287</span>
         <h3>EMEIF MANOEL GUERREIRO RODRIGUES</h3>
@@ -867,6 +1048,7 @@
       </div>
       <p class="onde">ARAÇÁ PRETO · COMUNIDADE ARAÇÁ PRETO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="59"><b>59</b><i>285</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>21,8%</b> (62 de 285)</span></div><div class="vrow lider" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:57.0%"></span></span><span class="vinfo">127 · 57,0%</span></div><div class="vrow" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:40.4%"></span></span><span class="vinfo">90 · 40,4%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.2%"></span></span><span class="vinfo">5 · 2,2%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.4%"></span></span><span class="vinfo">1 · 0,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>285</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.242626,-56.135003" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -874,7 +1056,7 @@
       <button class="coord" data-c="-2.242626, -56.135003">-2.242626, -56.135003 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1112 EMEIF RANA ROCHA BRUCE ILHA DO VALHA ME DEUS · ILHA DO VALHA ME  DEUS JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|34|95|" data-cod="1112">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1112 EMEIF RANA ROCHA BRUCE ILHA DO VALHA ME DEUS · ILHA DO VALHA ME  DEUS JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|34|95|" data-cod="1112" data-lider="13" data-abst="16.1" data-aptos="192" data-v13="91" data-v22="67" data-v70="0" data-v14="1" data-v55="1" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1112</span>
         <h3>EMEIF RANA ROCHA BRUCE</h3>
@@ -882,6 +1064,7 @@
       </div>
       <p class="onde">ILHA DO VALHA-ME DEUS · ILHA DO VALHA-ME- DEUS</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="34"><b>34</b><i>97</i></span><span class="sec" data-n="95"><b>95</b><i>96</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>16,1%</b> (31 de 192)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:56.9%"></span></span><span class="vinfo">91 · 56,9%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:41.9%"></span></span><span class="vinfo">67 · 41,9%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:0.6%"></span></span><span class="vinfo">1 · 0,6%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.6%"></span></span><span class="vinfo">1 · 0,6%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>2</b> seç. · <b>193</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.286645,-56.361039" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -889,7 +1072,7 @@
       <button class="coord" data-c="-2.286645, -56.361039">-2.286645, -56.361039 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1465 EMEIF ERISSON PEREIRA SILVA CAPITAO · COMUNIDADE CAPITAO JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|90|" data-cod="1465">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1465 EMEIF ERISSON PEREIRA SILVA CAPITAO · COMUNIDADE CAPITAO JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|90|" data-cod="1465" data-lider="13" data-abst="11.1" data-aptos="189" data-v13="156" data-v22="5" data-v70="1" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1465</span>
         <h3>EMEIF ERISSON PEREIRA SILVA</h3>
@@ -897,6 +1080,7 @@
       </div>
       <p class="onde">CAPITÃO · COMUNIDADE CAPITÃO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="90"><b>90</b><i>189</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>11,1%</b> (21 de 189)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:96.3%"></span></span><span class="vinfo">156 · 96,3%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:3.1%"></span></span><span class="vinfo">5 · 3,1%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:0.6%"></span></span><span class="vinfo">1 · 0,6%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>189</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.388500,-56.341100" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -904,7 +1088,7 @@
       <button class="coord" data-c="-2.388500, -56.341100">-2.388500, -56.341100 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1554 EMEIF PEDRO PIMENTEL SIMOES CAPIRANGA · COMUNIDADE CAPIRANGA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL" data-s="|107|" data-cod="1554">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1554 EMEIF PEDRO PIMENTEL SIMOES CAPIRANGA · COMUNIDADE CAPIRANGA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL" data-s="|107|" data-cod="1554" data-lider="13" data-abst="7.9" data-aptos="151" data-v13="95" data-v22="41" data-v70="0" data-v14="1" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1554</span>
         <h3>EMEIF PEDRO PIMENTEL SIMÕES</h3>
@@ -912,6 +1096,7 @@
       </div>
       <p class="onde">CAPIRANGA · COMUNIDADE CAPIRANGA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="107"><b>107</b><i>151</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>7,9%</b> (12 de 151)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:69.3%"></span></span><span class="vinfo">95 · 69,3%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:29.9%"></span></span><span class="vinfo">41 · 29,9%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.7%"></span></span><span class="vinfo">1 · 0,7%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>151</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.449100,-56.219700" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -919,7 +1104,7 @@
       <button class="coord" data-c="-2.449100, -56.219700">-2.449100, -56.219700 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1562 CENTRO SOCIAL DA COMUNIDADE POMPOM POMPOM · COMUNIDADE POMPOM JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL" data-s="|108|" data-cod="1562">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1562 CENTRO SOCIAL DA COMUNIDADE POMPOM POMPOM · COMUNIDADE POMPOM JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL" data-s="|108|" data-cod="1562" data-lider="13" data-abst="9.9" data-aptos="141" data-v13="111" data-v22="9" data-v70="0" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1562</span>
         <h3>CENTRO SOCIAL DA COMUNIDADE POMPOM</h3>
@@ -927,6 +1112,7 @@
       </div>
       <p class="onde">POMPOM · COMUNIDADE POMPOM</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="108"><b>108</b><i>142</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>9,9%</b> (14 de 141)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:92.5%"></span></span><span class="vinfo">111 · 92,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:7.5%"></span></span><span class="vinfo">9 · 7,5%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>142</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.474440,-56.297940" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -934,7 +1120,7 @@
       <button class="coord" data-c="-2.474440, -56.297940">-2.474440, -56.297940 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1538 EMEIF MERANDOLINA CASTRO ILHA DO CHAVES · COMUNIDADE ILHA DO CHAVES JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|106|" data-cod="1538">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1538 EMEIF MERANDOLINA CASTRO ILHA DO CHAVES · COMUNIDADE ILHA DO CHAVES JURUTI VELHO MUIRAPINIMA JURUTI MIRI RIBEIRINHO" data-s="|106|" data-cod="1538" data-lider="13" data-abst="13.3" data-aptos="105" data-v13="65" data-v22="26" data-v70="0" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1538</span>
         <h3>EMEIF MERANDOLINA CASTRO</h3>
@@ -942,6 +1128,7 @@
       </div>
       <p class="onde">ILHA DO CHAVES · COMUNIDADE ILHA DO CHAVES</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="106"><b>106</b><i>105</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>13,3%</b> (14 de 105)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:71.4%"></span></span><span class="vinfo">65 · 71,4%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:28.6%"></span></span><span class="vinfo">26 · 28,6%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>105</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.270079,-56.336277" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -949,7 +1136,7 @@
       <button class="coord" data-c="-2.270079, -56.336277">-2.270079, -56.336277 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MUIRAPINIMA" data-b="1716 RAIMUNDO FARIAS DE MATOS CAPELINHA · COMUNIDADE CAPELINHA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL" data-s="|132|" data-cod="1716">
+    <article class="card tem-lider-13" data-d="MUIRAPINIMA" data-b="1716 RAIMUNDO FARIAS DE MATOS CAPELINHA · COMUNIDADE CAPELINHA JURUTI VELHO MUIRAPINIMA JURUTI VELHO RURAL" data-s="|132|" data-cod="1716" data-lider="13" data-abst="9.9" data-aptos="101" data-v13="69" data-v22="17" data-v70="0" data-v14="0" data-v55="3" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1716</span>
         <h3>RAIMUNDO FARIAS DE MATOS</h3>
@@ -957,6 +1144,7 @@
       </div>
       <p class="onde">CAPELINHA · COMUNIDADE CAPELINHA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="132"><b>132</b><i>101</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>9,9%</b> (10 de 101)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:77.5%"></span></span><span class="vinfo">69 · 77,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:19.1%"></span></span><span class="vinfo">17 · 19,1%</span></div><div class="vrow" data-num="55"><span class="vnome">Ronaldo Caiado</span><span class="vfundo"><span class="vbarra coutro" style="width:3.4%"></span></span><span class="vinfo">3 · 3,4%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>101</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.341224,-56.285394" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -968,7 +1156,7 @@
   <section class="grupo" data-d="MAMURU">
     <div class="ghead"><h2>Mamuru</h2><span>5 locais · 5 seções · 558 eleitores</span></div>
     
-    <article class="card" data-d="MAMURU" data-b="1422 EMEIF SAO JOSE SAO JOSE DO LAGUINHO MAMURU MAMURU MAMURU PLANALTO RIBEIRINHO" data-s="|80|" data-cod="1422">
+    <article class="card tem-lider-13" data-d="MAMURU" data-b="1422 EMEIF SAO JOSE SAO JOSE DO LAGUINHO MAMURU MAMURU MAMURU PLANALTO RIBEIRINHO" data-s="|80|" data-cod="1422" data-lider="13" data-abst="14.6" data-aptos="171" data-v13="122" data-v22="16" data-v70="4" data-v14="1" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1422</span>
         <h3>EMEIF SÃO JOSÉ</h3>
@@ -976,6 +1164,7 @@
       </div>
       <p class="onde">SÃO JOSÉ DO LAGUINHO</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="80"><b>80</b><i>171</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>14,6%</b> (25 de 171)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:85.3%"></span></span><span class="vinfo">122 · 85,3%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:11.2%"></span></span><span class="vinfo">16 · 11,2%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.8%"></span></span><span class="vinfo">4 · 2,8%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:0.7%"></span></span><span class="vinfo">1 · 0,7%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>171</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-2.578849,-56.457664" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -983,7 +1172,7 @@
       <button class="coord" data-c="-2.578849, -56.457664">-2.578849, -56.457664 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MAMURU" data-b="1430 EM SANTA ROSA DE LIMA GURANATUBA · COMUNIDADE GUARANATUBA MAMURU MAMURU MAMURU PLANALTO INDIGENA GUARANATUBA" data-s="|81|" data-cod="1430">
+    <article class="card tem-lider-13" data-d="MAMURU" data-b="1430 EM SANTA ROSA DE LIMA GURANATUBA · COMUNIDADE GUARANATUBA MAMURU MAMURU MAMURU PLANALTO INDIGENA GUARANATUBA" data-s="|81|" data-cod="1430" data-lider="13" data-abst="23.4" data-aptos="145" data-v13="87" data-v22="14" data-v70="1" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1430</span>
         <h3>EM SANTA ROSA DE LIMA</h3>
@@ -991,6 +1180,7 @@
       </div>
       <p class="onde">GURANATUBA · COMUNIDADE GUARANATUBA</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="81"><b>81</b><i>145</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>23,4%</b> (34 de 145)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:85.3%"></span></span><span class="vinfo">87 · 85,3%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:13.7%"></span></span><span class="vinfo">14 · 13,7%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:1.0%"></span></span><span class="vinfo">1 · 1,0%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>145</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-3.299535,-56.498306" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -998,7 +1188,7 @@
       <button class="coord" data-c="-3.299535, -56.498306">-3.299535, -56.498306 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MAMURU" data-b="1406 EMEF SAGRADO CORACAO DE JESUS SABINA · COMUNIDADE SABINA   RIO MAMURU MAMURU MAMURU MAMURU PLANALTO RIBEIRINHO" data-s="|78|" data-cod="1406">
+    <article class="card tem-lider-13" data-d="MAMURU" data-b="1406 EMEF SAGRADO CORACAO DE JESUS SABINA · COMUNIDADE SABINA   RIO MAMURU MAMURU MAMURU MAMURU PLANALTO RIBEIRINHO" data-s="|78|" data-cod="1406" data-lider="13" data-abst="21.3" data-aptos="122" data-v13="71" data-v22="16" data-v70="6" data-v14="1" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1406</span>
         <h3>EMEF SAGRADO CORAÇÃO DE JESUS</h3>
@@ -1006,6 +1196,7 @@
       </div>
       <p class="onde">SABINA · COMUNIDADE SABINA - RIO MAMURU</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="78"><b>78</b><i>122</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>21,3%</b> (26 de 122)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:75.5%"></span></span><span class="vinfo">71 · 75,5%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:17.0%"></span></span><span class="vinfo">16 · 17,0%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:6.4%"></span></span><span class="vinfo">6 · 6,4%</span></div><div class="vrow" data-num="14"><span class="vnome">Renan Santos</span><span class="vfundo"><span class="vbarra coutro" style="width:1.1%"></span></span><span class="vinfo">1 · 1,1%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>122</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-3.005541,-56.628927" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -1013,7 +1204,7 @@
       <button class="coord" data-c="-3.005541, -56.628927">-3.005541, -56.628927 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MAMURU" data-b="1503 ESCOLA NOSSA SENHORA DO PERPETUO SOCORRO MOCAMBO · COMUNIDADE MOCAMBO DO MAMURU MAMURU MAMURU MAMURU RIO RIBEIRINHO" data-s="|94|" data-cod="1503">
+    <article class="card tem-lider-13" data-d="MAMURU" data-b="1503 ESCOLA NOSSA SENHORA DO PERPETUO SOCORRO MOCAMBO · COMUNIDADE MOCAMBO DO MAMURU MAMURU MAMURU MAMURU RIO RIBEIRINHO" data-s="|94|" data-cod="1503" data-lider="13" data-abst="41.1" data-aptos="73" data-v13="29" data-v22="13" data-v70="1" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1503</span>
         <h3>ESCOLA NOSSA SENHORA DO PERPÉTUO SOCORRO</h3>
@@ -1021,6 +1212,7 @@
       </div>
       <p class="onde">MOCAMBO · COMUNIDADE MOCAMBO DO MAMURU</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="94"><b>94</b><i>73</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>41,1%</b> (30 de 73)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:67.4%"></span></span><span class="vinfo">29 · 67,4%</span></div><div class="vrow" data-num="22"><span class="vnome">Flávio Bolsonaro</span><span class="vfundo"><span class="vbarra c22" style="width:30.2%"></span></span><span class="vinfo">13 · 30,2%</span></div><div class="vrow" data-num="70"><span class="vnome">Augusto Cury</span><span class="vfundo"><span class="vbarra coutro" style="width:2.3%"></span></span><span class="vinfo">1 · 2,3%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>73</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-3.099701,-56.585498" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -1028,7 +1220,7 @@
       <button class="coord" data-c="-3.099701, -56.585498">-3.099701, -56.585498 &nbsp;·&nbsp; copiar</button>
       
     </article>
-    <article class="card" data-d="MAMURU" data-b="1481 EM DIVINO ESPIRITO SANTO SAMAUMA · COMUNIDADE DO SAMAUMA RIO MAMURU MAMURU MAMURU MAMURU RIO RIBEIRINHO" data-s="|92|" data-cod="1481">
+    <article class="card tem-lider-13" data-d="MAMURU" data-b="1481 EM DIVINO ESPIRITO SANTO SAMAUMA · COMUNIDADE DO SAMAUMA RIO MAMURU MAMURU MAMURU MAMURU RIO RIBEIRINHO" data-s="|92|" data-cod="1481" data-lider="13" data-abst="28.9" data-aptos="45" data-v13="30" data-v22="0" data-v70="0" data-v14="0" data-v55="0" data-v27="0" data-v80="0" data-v30="0" data-v21="0" data-v35="0" data-v16="0">
       <div class="top">
         <span class="cod">1481</span>
         <h3>EM DIVINO ESPÍRITO SANTO</h3>
@@ -1036,6 +1228,7 @@
       </div>
       <p class="onde">SAMAÚMA · COMUNIDADE DO SAMAUMA RIO MAMURU</p>
       <div class="secs"><span class="secs-l">Seções</span><span class="sec" data-n="92"><b>92</b><i>47</i></span></div>
+      <div class="votos"><div class="votos-cab"><span class="votos-l">Presidente · 1º turno</span><span class="abst">Abstenção: <b>28,9%</b> (13 de 45)</span></div><div class="vrow lider" data-num="13"><span class="vnome">Lula</span><span class="vfundo"><span class="vbarra c13" style="width:100.0%"></span></span><span class="vinfo">30 · 100,0%</span></div></div>
       <div class="bot">
         <span class="resumo"><b>1</b> seç. · <b>47</b> eleitores</span>
         <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=-3.210909,-56.581260" target="_blank" rel="noopener">Como chegar &rsaquo;</a>
@@ -1051,6 +1244,8 @@
   <footer>
     <p><b>Fonte.</b> Cadastro de locais e seções do TRE-PA (InfoZonas, Zona 105) para 2026.
     Coordenadas conferidas por código INEP contra o levantamento georreferenciado das escolas.</p>
+    <p><b>Resultados.</b> Boletins de Urna (BUweb) do TSE, 1º turno, apurados em 05/10/2026.
+    Percentuais calculados sobre os votos válidos (nominais) de cada local.</p>
   </footer>
 </div>
 
@@ -1117,6 +1312,97 @@
              i.select(); try { document.execCommand('copy'); ok(); } catch (e) {} document.body.removeChild(i); }
     });
   });
+
+  var candSel = document.getElementById('cand'), ordemSel = document.getElementById('ordem');
+  var NOMES = {};
+  candSel.querySelectorAll('option').forEach(function (o) { if (o.value) NOMES[o.value] = o.textContent; });
+
+  // guarda a ordem original de cada grupo pra poder restaurar
+  var ordemOriginal = grupos.map(function (g) { return [].slice.call(g.querySelectorAll('.card')); });
+
+  function totalValidos(c) {
+    var t = 0;
+    for (var k in c.dataset) { if (/^v\d+$/.test(k)) t += parseFloat(c.dataset[k] || 0); }
+    return t;
+  }
+
+  function aplicarDestaque() {
+    var num = candSel.value;
+    cards.forEach(function (c) {
+      c.querySelectorAll('.vrow').forEach(function (r) {
+        var ativo = !!num && r.dataset.num === num;
+        r.classList.toggle('destaque', ativo);
+        r.classList.toggle('cor-13', ativo && num === '13');
+        r.classList.toggle('cor-22', ativo && num === '22');
+      });
+      var caixa = c.querySelector('.destaque-box');
+      if (!num) {
+        if (caixa) caixa.remove();
+        return;
+      }
+      if (!('v' + num in c.dataset)) { if (caixa) caixa.remove(); return; } // card sem dados (ex.: 1490)
+      var v = parseFloat(c.dataset['v' + num] || 0);
+      var total = totalValidos(c);
+      var pct = total ? (100 * v / total) : 0;
+      var texto = NOMES[num] + ': ' + v + ' voto' + (v === 1 ? '' : 's') +
+                  ' (' + pct.toFixed(1).replace('.', ',') + '% dos válidos)';
+      if (!caixa) {
+        caixa = document.createElement('div');
+        var votos = c.querySelector('.votos');
+        if (votos) votos.insertBefore(caixa, votos.firstChild);
+      }
+      caixa.className = 'destaque-box' + (num === '13' ? ' cor-13' : num === '22' ? ' cor-22' : '');
+      caixa.textContent = texto;
+    });
+  }
+
+  function limparRanks() {
+    document.querySelectorAll('.rank-badge').forEach(function (b) { b.remove(); });
+  }
+
+  function ordenar() {
+    var modo = ordemSel.value;
+    if (!modo) {
+      limparRanks();
+      grupos.forEach(function (g, i) { ordemOriginal[i].forEach(function (c) { g.appendChild(c); }); });
+      filtrar();
+      return;
+    }
+    var num = candSel.value;
+    var comparador = function (a, b) {
+      if (modo === 'abst-desc') return parseFloat(b.dataset.abst) - parseFloat(a.dataset.abst);
+      if (modo === 'abst-asc') return parseFloat(a.dataset.abst) - parseFloat(b.dataset.abst);
+      if (modo === 'aptos-desc') return parseFloat(b.dataset.aptos) - parseFloat(a.dataset.aptos);
+      if (modo === 'cand-desc' || modo === 'cand-asc') {
+        if (!num) return 0;
+        var va = parseFloat(a.dataset['v' + num] || 0), vb = parseFloat(b.dataset['v' + num] || 0);
+        return modo === 'cand-desc' ? vb - va : va - vb;
+      }
+      return 0;
+    };
+    grupos.forEach(function (g) {
+      var lista = [].slice.call(g.querySelectorAll('.card'));
+      lista.sort(comparador);
+      lista.forEach(function (c) { g.appendChild(c); });
+    });
+    limparRanks();
+    // numera so os cards visiveis (respeitando busca/distrito), na ordem final do documento
+    var rank = 0;
+    cards.filter(function (c) { return c.style.display !== 'none'; })
+      .sort(function (a, b) { return a.compareDocumentPosition(b) & 4 ? -1 : 1; })
+      .forEach(function (c) {
+        rank++;
+        var badge = document.createElement('span');
+        badge.className = 'rank-badge';
+        badge.textContent = '#' + rank;
+        c.querySelector('.top').insertBefore(badge, c.querySelector('.top').firstChild);
+      });
+  }
+
+  candSel.addEventListener('change', function () { aplicarDestaque(); ordenar(); });
+  ordemSel.addEventListener('change', ordenar);
+  aplicarDestaque();
+
   filtrar();
 })();
 </script>
